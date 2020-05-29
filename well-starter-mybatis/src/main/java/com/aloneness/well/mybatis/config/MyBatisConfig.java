@@ -1,6 +1,5 @@
 package com.aloneness.well.mybatis.config;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,7 +22,6 @@ import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.util.ClassUtils;
-
 
 /**
  * mybatis 支持*号扫描包路径
@@ -99,6 +97,4 @@ public class MyBatisConfig {
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
         return sessionFactory.getObject();
     }
-
-
 }
