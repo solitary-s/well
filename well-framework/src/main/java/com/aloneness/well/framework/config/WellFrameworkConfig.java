@@ -1,11 +1,13 @@
 package com.aloneness.well.framework.config;
 
 import com.aloneness.well.common.util.JacksonUtil;
+import com.aloneness.well.framework.properties.WellProperties;
 import com.aloneness.well.framework.response.ApiControllerAdvice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpOutputMessage;
@@ -25,6 +27,7 @@ import java.util.List;
  * @author aloneness
  */
 @Configuration
+@EnableConfigurationProperties(WellProperties.class)
 public class WellFrameworkConfig implements WebMvcConfigurer {
 
     @Autowired
