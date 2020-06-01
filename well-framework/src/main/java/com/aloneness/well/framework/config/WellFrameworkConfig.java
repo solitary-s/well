@@ -1,24 +1,15 @@
 package com.aloneness.well.framework.config;
 
-import com.aloneness.well.common.util.JacksonUtil;
 import com.aloneness.well.framework.properties.WellProperties;
-import com.aloneness.well.framework.response.ApiControllerAdvice;
+import com.aloneness.well.framework.util.JacksonUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpOutputMessage;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.List;
 
 /**

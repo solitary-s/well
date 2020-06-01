@@ -1,4 +1,4 @@
-package com.aloneness.well.common.util;
+package com.aloneness.well.framework.util;
 
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;

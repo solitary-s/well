@@ -1,4 +1,4 @@
-package com.aloneness.well.common.util;
+package com.aloneness.well.framework.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
