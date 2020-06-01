@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = { java.lang.annotation.ElementType.TYPE })
 @Documented
-@Import(value = { WellFrameworkConfig.class})
+@Import(value = { WellFrameworkConfig.class, WellBeanConfig.class})
 public @interface EnableWellFramework {
 
 }

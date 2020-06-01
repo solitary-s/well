@@ -15,6 +15,7 @@ import java.io.Serializable;
  * @author aloneness
  */
 @Setter
+@Getter
 @Builder
 @ToString
 @AllArgsConstructor
