@@ -1,5 +1,6 @@
 package com.aloneness.well.framework.config;
 
+import com.aloneness.well.common.util.JacksonUtil;
 import com.aloneness.well.framework.response.ApiControllerAdvice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -40,5 +41,20 @@ public class WellFrameworkConfig implements WebMvcConfigurer {
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.clear();
         converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
+    }
+
+    /**
+     * Json序列化
+     * 时间格式化 LocalDateTime localDateTime;
+     *           LocalDate localDate;
+     *           LocalTime localTime;
+     * Long类型序列化
+     *           Long -> String
+     *
+     * @param converters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.forEach(JacksonUtil.wrapperObjectMapper());
     }
 }
