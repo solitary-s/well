@@ -51,4 +51,6 @@ public class WellFrameworkConfig implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.forEach(JacksonUtil.wrapperObjectMapper());
     }
+
+
 }
