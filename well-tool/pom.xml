@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.aloneness</groupId>
+        <artifactId>well-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../well-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.aloneness</groupId>
+    <artifactId>well-tool</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>well-tool</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.aloneness</groupId>
+            <artifactId>well-starter-mybatis</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!--velocity代码生成使用模板 -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>
