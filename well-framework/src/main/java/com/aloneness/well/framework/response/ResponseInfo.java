@@ -1,11 +1,10 @@
 package com.aloneness.well.framework.response;
 
 import cn.hutool.http.HttpStatus;
+import com.aloneness.well.framework.exception.assertException.ErrorCode;
 import lombok.*;
-import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 
 
@@ -42,4 +41,11 @@ public class ResponseInfo<T> implements Serializable {
         return ResponseInfo.<T>builder().code(code).data(data).build();
     }
 
+    public static ResponseInfo fail(ErrorCode errorCode, Exception e) {
+        return ResponseInfo.builder().code(errorCode.getCode()).msg(errorCode.getMsg() + e.getMessage()).build();
+    }
+
+    public static ResponseInfo fail(ErrorCode errorCode) {
+        return ResponseInfo.builder().code(errorCode.getCode()).msg(errorCode.getMsg()).build();
+    }
 }

@@ -11,31 +11,31 @@ import com.aloneness.well.framework.enums.ErrorCodeEnum;
  */
 public class ApiAssert {
 
-    public static void failure(ErrorCodeEnum errorCodeEnum) {
-        throw new ApiException(errorCodeEnum);
+    public static void failure(ErrorCode errorCode) {
+        throw new ApiException(errorCode);
     }
 
     /**
      * 断言 为null
      *
-     * @param errorCodeEnum
+     * @param errorCode
      * @param conditions
      */
-    public static void isNull(ErrorCodeEnum errorCodeEnum, Object... conditions) {
+    public static void isNull(ErrorCode errorCode, Object conditions) {
         if (ObjectUtil.isNotNull(conditions)) {
-            failure(errorCodeEnum);
+            failure(errorCode);
         }
     }
 
     /**
      * 断言 不为null
      *
-     * @param errorCodeEnum
+     * @param errorCode
      * @param conditions
      */
-    public static void isNotNull(ErrorCodeEnum errorCodeEnum, Object... conditions) {
+    public static void isNotNull(ErrorCode errorCode, Object conditions) {
         if (ObjectUtil.isNull(conditions)) {
-            failure(errorCodeEnum);
+            failure(errorCode);
         }
     }
 

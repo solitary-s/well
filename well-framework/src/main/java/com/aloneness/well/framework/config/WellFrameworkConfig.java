@@ -1,13 +1,16 @@
 package com.aloneness.well.framework.config;
 
+import com.aloneness.well.framework.exception.WellHandlerExceptionResolver;
 import com.aloneness.well.framework.properties.WellProperties;
 import com.aloneness.well.framework.util.JacksonUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
@@ -17,12 +20,16 @@ import java.util.List;
  *
  * @author aloneness
  */
+@Slf4j
 @Configuration
 @EnableConfigurationProperties(WellProperties.class)
 public class WellFrameworkConfig implements WebMvcConfigurer {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private WellHandlerExceptionResolver wellHandlerExceptionResolver;
 
     /**
      * HTTP消息转换器
@@ -52,5 +59,14 @@ public class WellFrameworkConfig implements WebMvcConfigurer {
         converters.forEach(JacksonUtil.wrapperObjectMapper());
     }
 
-
+    /**
+     * 全局异常处理
+     *
+     * @param resolvers
+     */
+    @Override
+    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+        resolvers.add(wellHandlerExceptionResolver);
+        log.info("开启全局异常处理");
+    }
 }

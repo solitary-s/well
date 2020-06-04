@@ -2,6 +2,10 @@ package com.aloneness.well.framework.test.controller;
 
 import com.aloneness.well.framework.response.NotWrap;
 import com.aloneness.well.framework.test.domain.User;
+import com.aloneness.well.framework.test.exception.CustomException;
+import com.aloneness.well.framework.test.exception.TestException;
+import com.aloneness.well.framework.test.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +21,12 @@ import java.time.LocalTime;
 @RestController
 public class HelloController {
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/hello")
     public String hello() {
-        return "hello";
+        throw new CustomException();
     }
 
     @GetMapping("/user")
@@ -37,6 +44,7 @@ public class HelloController {
 
     @GetMapping("/num")
     public Integer num(){
+        userService.user();
         return 1;
     }
 }

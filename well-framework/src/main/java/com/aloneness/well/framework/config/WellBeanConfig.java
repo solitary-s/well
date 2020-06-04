@@ -1,5 +1,8 @@
 package com.aloneness.well.framework.config;
 
+import com.aloneness.well.framework.exception.DefaultExceptionResolverService;
+import com.aloneness.well.framework.exception.IExceptionResolverService;
+import com.aloneness.well.framework.exception.WellHandlerExceptionResolver;
 import com.aloneness.well.framework.properties.WellProperties;
 import com.aloneness.well.framework.response.ApiControllerAdvice;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Collections;
+import java.util.Map;
 
 /**
  * well config配置
@@ -56,5 +60,26 @@ public class WellBeanConfig {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         log.info("开启全局跨域支持");
         return bean;
+    }
+
+    /**
+     * 默认异常处理
+     *
+     * @return
+     */
+    @Bean
+    public DefaultExceptionResolverService defaultExceptionResolverService() {
+        return  new DefaultExceptionResolverService();
+    }
+
+    /**
+     * 全局异常处理
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean(WellHandlerExceptionResolver.class)
+    public WellHandlerExceptionResolver wellHandlerExceptionResolver(Map<String, IExceptionResolverService> resolverServices) {
+        return new WellHandlerExceptionResolver(resolverServices);
     }
 }

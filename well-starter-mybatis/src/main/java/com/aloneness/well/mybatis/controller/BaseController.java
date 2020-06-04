@@ -1,5 +1,6 @@
 package com.aloneness.well.mybatis.controller;
 
+import com.aloneness.well.framework.util.RequestUtil;
 import com.github.pagehelper.PageHelper;
 
 public class BaseController {
