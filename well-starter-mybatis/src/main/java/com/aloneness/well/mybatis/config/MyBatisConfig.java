@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.aloneness.well.mybatis.exception.SqlExceptionResolverService;
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -96,5 +97,15 @@ public class MyBatisConfig {
         sessionFactory.setTypeAliasesPackage(typeAliasesPackage);
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
         return sessionFactory.getObject();
+    }
+
+    /**
+     * 异常处理
+     *
+     * @return
+     */
+    @Bean
+    public SqlExceptionResolverService sqlExceptionResolverService() {
+        return new SqlExceptionResolverService();
     }
 }
