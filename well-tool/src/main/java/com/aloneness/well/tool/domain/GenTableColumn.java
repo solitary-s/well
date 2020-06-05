@@ -1,6 +1,9 @@
 package com.aloneness.well.tool.domain;
 
 import com.aloneness.well.mybatis.domain.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * gen_table_column
@@ -8,6 +11,9 @@ import com.aloneness.well.mybatis.domain.BaseEntity;
  * @author: tong
  * @create: 2020-06-04 23:33
  */
+@Setter
+@Getter
+@ToString
 public class GenTableColumn extends BaseEntity {
 
     /**

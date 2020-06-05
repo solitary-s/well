@@ -1,6 +1,9 @@
 package com.aloneness.well.tool.domain;
 
 import com.aloneness.well.mybatis.domain.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -10,6 +13,9 @@ import java.util.List;
  * @author: tong
  * @create: 2020-06-04 23:30
  */
+@Setter
+@Getter
+@ToString
 public class GenTable extends BaseEntity {
 
     /** 编号 */
