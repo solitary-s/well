@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.elead.chaos.tool.gen.mapper.GenTableColumnMapper">
+<mapper namespace="com.aloneness.well.tool.mapper.GenTableColumnMapper">
 
     <resultMap type="com.aloneness.well.tool.domain.GenTableColumn" id="GenTableColumnResult">
         <id     property="columnId"       column="column_id"      />

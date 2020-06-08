@@ -5,6 +5,8 @@ import com.aloneness.well.framework.enums.ErrorCodeEnum;
 import com.aloneness.well.framework.enums.ExStatus;
 import com.aloneness.well.framework.exception.assertException.ApiException;
 import com.aloneness.well.framework.util.ResponseUtil;
+import com.google.common.base.Throwables;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
@@ -20,6 +22,7 @@ import java.util.Set;
  * @author: tong
  * @create: 2020-06-03 22:03
  */
+@Slf4j
 public class WellHandlerExceptionResolver extends AbstractHandlerExceptionResolver {
 
 
@@ -57,7 +60,16 @@ public class WellHandlerExceptionResolver extends AbstractHandlerExceptionResolv
                 }
             }
         } catch (Exception exception) {
-            logger.warn(exception);
+            if (log.isWarnEnabled()) {
+                log.warn("Handling of [" + exception.getClass().getName() + "] resulted in Exception", exception);
+            }
+        }
+
+        // 打印异常信息
+        if (httpServletResponse.getStatus() < HttpServletResponse.SC_INTERNAL_SERVER_ERROR) {
+            log.error("Info: doResolveInfo {}", e.getMessage());
+        } else {
+            log.error("Warn: doResolveException {}", Throwables.getStackTraceAsString(e));
         }
         return new ModelAndView();
     }

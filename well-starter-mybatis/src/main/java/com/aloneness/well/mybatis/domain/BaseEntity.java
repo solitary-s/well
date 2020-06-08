@@ -36,4 +36,8 @@ public class BaseEntity implements Serializable {
     private int pageSize;
 
     private Map<String, Object> params;
+
+    private String beginTime;
+
+    private String endTime;
 }
