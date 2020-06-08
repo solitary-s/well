@@ -41,6 +41,7 @@
 
         <persistence-api.version>1.0</persistence-api.version>
         <common-pool2.version>2.6.2</common-pool2.version>
+        <commons-io.version>2.4</commons-io.version>
         <swagger2.version>2.8.0</swagger2.version>
         <!-- Spring Settings -->
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
@@ -117,6 +118,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${common-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.hutool</groupId>

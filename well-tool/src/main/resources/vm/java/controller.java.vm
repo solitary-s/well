@@ -1,0 +1,133 @@
+package ${packageName}.controller;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import ${packageName}.domain.${ClassName};
+import ${packageName}.service.I${ClassName}Service;
+import com.aloneness.well.mybatis.controller.BaseController;
+import cn.elead.chaos.excel.ExcelUtil;
+#if($table.crud)
+import cn.elead.chaos.mybatils.web.page.TableDataInfo;
+#elseif($table.tree)
+#end
+
+
+/**
+ * ${functionName}Controller
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("/${moduleName}/${businessName}")
+@Api(value = "${functionName}",tags = "${functionName}")
+public class ${ClassName}Controller extends BaseController
+{
+    @Autowired
+    private I${ClassName}Service ${className}Service;
+
+    #if($table.crud)
+        /**
+         * 分页查询${functionName}列表
+         */
+        @GetMapping("/page")
+        @RequiresPermissions("${permissionPrefix}:list")
+        @ApiOperation(value = "分页查询${functionName}列表",notes = "分页查询${functionName}列表")
+        public TableDataInfo<${ClassName}> page(${ClassName} ${className}) {
+            startPage();
+            List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
+            return getDataTable(list);
+        }
+    #elseif($table.tree)
+        /**
+         * 查询${functionName}列表
+         */
+        @GetMapping("/list")
+        @RequiresPermissions("${permissionPrefix}:list")
+        @ApiOperation(value = "查询${functionName}列表",notes = "查询${functionName}列表")
+        public List<${ClassName}> list(${ClassName} ${className})
+        {
+            List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
+            return list;
+        }
+    #end
+
+    #if($table.crud)
+        /**
+         * 查询${functionName}列表
+         */
+        @GetMapping("/list")
+        @RequiresPermissions("${permissionPrefix}:list")
+        @ApiOperation(value = "查询${functionName}列表",notes = "查询${functionName}列表")
+        public List<${ClassName}> list(${ClassName} ${className})
+        {
+            List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
+            return list;
+        }
+    #end
+
+    /**
+     * 导出${functionName}列表
+     */
+    @GetMapping("/export")
+    @RequiresPermissions("${permissionPrefix}:export")
+    @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
+    @ApiOperation(value = "导出${functionName}列表",notes = "导出${functionName}列表")
+    public String export(${ClassName} ${className}) {
+        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
+        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
+        return util.exportExcel(list, "${businessName}");
+    }
+
+    /**
+     * 获取${functionName}详细信息
+     */
+    @GetMapping(value = "/{${pkColumn.javaField}}")
+    @RequiresPermissions("${permissionPrefix}:list")
+    @ApiOperation(value = "获取${functionName}详细信息",notes = "获取${functionName}详细信息")
+    public ${ClassName} getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
+        return ${className}Service.select${ClassName}ById(${pkColumn.javaField});
+    }
+
+    /**
+     * 新增${functionName}
+     */
+    @PostMapping
+    @RequiresPermissions("${permissionPrefix}:add")
+    @Log(title = "${functionName}", businessType = BusinessType.INSERT)
+    @ApiOperation(value = "新增${functionName}",notes = "新增${functionName}")
+    public int add(@RequestBody ${ClassName} ${className}) {
+        return ${className}Service.insert${ClassName}(${className});
+    }
+
+    /**
+     * 修改${functionName}
+     */
+    @PutMapping
+    @RequiresPermissions("${permissionPrefix}:edit")
+    @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
+    @ApiOperation(value = "修改${functionName}",notes = "修改${functionName}")
+    public int edit(@RequestBody ${ClassName} ${className}) {
+        return ${className}Service.update${ClassName}(${className});
+    }
+
+    /**
+     * 删除${functionName}
+     */
+    @DeleteMapping("/{${pkColumn.javaField}s}")
+    @RequiresPermissions("${permissionPrefix}:remove")
+    @Log(title = "${functionName}", businessType = BusinessType.DELETE)
+    @ApiOperation(value = "删除${functionName}",notes = "删除${functionName}")
+    public int remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s){
+        return ${className}Service.delete${ClassName}ByIds(${pkColumn.javaField}s);
+    }
+}

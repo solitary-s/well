@@ -1,6 +1,21 @@
 package com.aloneness.well.tool.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.aloneness.well.common.constants.WellConstants;
+import com.aloneness.well.framework.enums.ErrorCodeEnum;
+import com.aloneness.well.framework.exception.assertException.ApiAssert;
+import com.aloneness.well.tool.contants.GenConstants;
+import com.aloneness.well.tool.domain.GenTable;
+import com.aloneness.well.tool.domain.GenTableColumn;
+import com.aloneness.well.tool.mapper.GenTableColumnMapper;
+import com.aloneness.well.tool.mapper.GenTableMapper;
+import com.aloneness.well.tool.service.IGenTableService;
+import com.aloneness.well.tool.util.GenUtils;
+import com.aloneness.well.tool.util.VelocityInitializer;
+import com.aloneness.well.tool.util.VelocityUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -64,6 +79,7 @@ public class GenTableServiceImpl implements IGenTableService {
      * @param genTable 业务信息
      * @return 数据库表集合
      */
+    @Override
     public List<GenTable> selectDbTableList(GenTable genTable) {
         return genTableMapper.selectDbTableList(genTable);
     }
@@ -74,6 +90,7 @@ public class GenTableServiceImpl implements IGenTableService {
      * @param tableNames 表名称组
      * @return 数据库表集合
      */
+    @Override
     public List<GenTable> selectDbTableListByNames(String[] tableNames) {
         return genTableMapper.selectDbTableListByNames(tableNames);
     }
@@ -85,7 +102,7 @@ public class GenTableServiceImpl implements IGenTableService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void updateGenTable(GenTable genTable) {
         String options = JSON.toJSONString(genTable.getParams());
         genTable.setOptions(options);
@@ -100,11 +117,11 @@ public class GenTableServiceImpl implements IGenTableService {
     /**
      * 删除业务对象
      *
-     * @param ids 需要删除的数据ID
+     * @param tableIds 需要删除的数据ID
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void deleteGenTableByIds(Long[] tableIds) {
         genTableMapper.deleteGenTableByIds(tableIds);
         genTableColumnMapper.deleteGenTableColumnByIds(tableIds);
@@ -116,9 +133,9 @@ public class GenTableServiceImpl implements IGenTableService {
      * @param tableList 导入表列表
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void importGenTable(List<GenTable> tableList) {
-        String operName = SsoUtils.getUserName();
+        String operName = "admin";
         for (GenTable table : tableList) {
             try {
                 String tableName = table.getTableName();
@@ -145,6 +162,7 @@ public class GenTableServiceImpl implements IGenTableService {
      * @param tableId 表编号
      * @return 预览数据列表
      */
+    @Override
     public Map<String, String> previewCode(Long tableId) {
         Map<String, String> dataMap = new LinkedHashMap<>();
         // 查询表信息
@@ -161,7 +179,7 @@ public class GenTableServiceImpl implements IGenTableService {
         for (String template : templates) {
             // 渲染模板
             StringWriter sw = new StringWriter();
-            Template tpl = Velocity.getTemplate(template, Constants.UTF8);
+            Template tpl = Velocity.getTemplate(template, WellConstants.UTF8);
             tpl.merge(context, sw);
             dataMap.put(template, sw.toString());
         }
@@ -219,12 +237,12 @@ public class GenTableServiceImpl implements IGenTableService {
         for (String template : templates) {
             // 渲染模板
             StringWriter sw = new StringWriter();
-            Template tpl = Velocity.getTemplate(template, Constants.UTF8);
+            Template tpl = Velocity.getTemplate(template, WellConstants.UTF8);
             tpl.merge(context, sw);
             try {
                 // 添加到zip
                 zip.putNextEntry(new ZipEntry(VelocityUtils.getFileName(template, table)));
-                IOUtils.write(sw.toString(), zip, Constants.UTF8);
+                IOUtils.write(sw.toString(), zip, WellConstants.UTF8);
                 IOUtils.closeQuietly(sw);
                 zip.flush();
                 zip.closeEntry();
@@ -239,6 +257,7 @@ public class GenTableServiceImpl implements IGenTableService {
      *
      * @param genTable 业务信息
      */
+    @Override
     public void validateEdit(GenTable genTable) {
         if (GenConstants.TPL_TREE.equals(genTable.getTplCategory())) {
             String options = JSON.toJSONString(genTable.getParams());
@@ -256,8 +275,8 @@ public class GenTableServiceImpl implements IGenTableService {
     /**
      * 设置主键列信息
      *
-     * @param genTable 业务表信息
-     * @param columns  业务字段列表
+     * @param columns 业务表信息
+     * @param columns 业务字段列表
      */
     public void setPkColumn(GenTable table, List<GenTableColumn> columns) {
         for (GenTableColumn column : columns) {

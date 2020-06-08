@@ -9,6 +9,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Map;
 
 @Setter
 @Getter
@@ -33,4 +34,6 @@ public class BaseEntity implements Serializable {
     private int pageNum;
 
     private int pageSize;
+
+    private Map<String, Object> params;
 }

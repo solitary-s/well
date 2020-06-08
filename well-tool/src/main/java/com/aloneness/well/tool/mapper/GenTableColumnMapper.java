@@ -1,16 +1,26 @@
-package com.aloneness.well.tool.service;
+package com.aloneness.well.tool.mapper;
 
 import com.aloneness.well.tool.domain.GenTableColumn;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * service
- *
  * @author liaoshitong
- * @date 2020/6/5
+ * @date 2020/6/8
  */
-public interface IGenTableColumnService {
+@Mapper
+@Repository
+public interface GenTableColumnMapper {
+    /**
+     * 根据表名称查询列信息
+     *
+     * @param tableName 表名称
+     * @return 列信息
+     */
+    public List<GenTableColumn> selectDbTableColumnsByName(String tableName);
+
     /**
      * 查询业务字段列表
      *
@@ -36,10 +46,10 @@ public interface IGenTableColumnService {
     public int updateGenTableColumn(GenTableColumn genTableColumn);
 
     /**
-     * 删除业务字段信息
+     * 批量删除业务字段
      *
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deleteGenTableColumnByIds(String ids);
+    public int deleteGenTableColumnByIds(Long[] ids);
 }

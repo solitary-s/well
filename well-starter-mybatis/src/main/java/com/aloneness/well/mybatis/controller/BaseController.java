@@ -4,6 +4,7 @@ import cn.hutool.http.HttpStatus;
 import com.aloneness.well.framework.util.RequestUtil;
 import com.aloneness.well.mybatis.domain.PageInfo;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -16,8 +17,8 @@ public class BaseController {
         String pageNumStr = RequestUtil.getRequest().getParameter("pageNum");
         String pageSizeStr = RequestUtil.getRequest().getParameter("pageSize");
 
-        int pageNum = Integer.valueOf(pageNumStr);
-        int pageSize = Integer.valueOf(pageSizeStr);
+        int pageNum = StringUtils.isEmpty(pageNumStr) ? 1 : Integer.valueOf(pageNumStr);
+        int pageSize = StringUtils.isEmpty(pageSizeStr) ? 10 : Integer.valueOf(pageSizeStr);
         PageHelper.startPage(pageNum, pageSize);
     }
 

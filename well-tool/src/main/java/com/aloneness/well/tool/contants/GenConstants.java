@@ -6,33 +6,173 @@ package com.aloneness.well.tool.contants;
  * @author liaoshitong
  * @date 2020/6/5
  */
-public interface GenConstants {
+public class GenConstants {
+    /**
+     * 单表（增删改查）
+     */
+    public static final String TPL_CRUD = "crud";
 
-    String TPL_CRUD = "crud";
-    String TPL_TREE = "tree";
-    String TREE_CODE = "treeCode";
-    String TREE_PARENT_CODE = "treeParentCode";
-    String TREE_NAME = "treeName";
-    String[] COLUMNTYPE_STR = new String[]{"char", "varchar", "narchar", "varchar2", "tinytext", "text", "mediumtext", "longtext"};
-    String[] COLUMNTYPE_TIME = new String[]{"datetime", "time", "date", "timestamp"};
-    String[] COLUMNTYPE_NUMBER = new String[]{"tinyint", "smallint", "mediumint", "int", "number", "integer", "bigint", "float", "float", "double", "decimal"};
-    String[] COLUMNNAME_NOT_EDIT = new String[]{"id", "create_by", "create_time", "del_flag"};
-    String[] COLUMNNAME_NOT_LIST = new String[]{"id", "create_by", "create_time", "del_flag", "update_by", "update_time"};
-    String[] COLUMNNAME_NOT_QUERY = new String[]{"id", "create_by", "create_time", "del_flag", "update_by", "update_time", "remark"};
-    String[] BASE_ENTITY = new String[]{"createBy", "createTime", "updateBy", "updateTime", "remark"};
-    String[] TREE_ENTITY = new String[]{"parentName", "parentId", "orderNum", "ancestors", "children"};
-    String HTML_INPUT = "input";
-    String HTML_TEXTAREA = "textarea";
-    String HTML_SELECT = "select";
-    String HTML_RADIO = "radio";
-    String HTML_CHECKBOX = "checkbox";
-    String HTML_DATETIME = "datetime";
-    String TYPE_STRING = "String";
-    String TYPE_INTEGER = "Integer";
-    String TYPE_LONG = "Long";
-    String TYPE_DOUBLE = "Double";
-    String TYPE_BIGDECIMAL = "BigDecimal";
-    String TYPE_DATE = "Date";
-    String QUERY_LIKE = "LIKE";
-    String REQUIRE = "1";
+    /**
+     * 树表（增删改查）
+     */
+    public static final String TPL_TREE = "tree";
+
+    /**
+     * 树编码字段
+     */
+    public static final String TREE_CODE = "treeCode";
+
+    /**
+     * 树父编码字段
+     */
+    public static final String TREE_PARENT_CODE = "treeParentCode";
+
+    /**
+     * 树名称字段
+     */
+    public static final String TREE_NAME = "treeName";
+
+    /**
+     * 数据库字符串类型
+     */
+    public static final String[] COLUMNTYPE_STR = {"char", "varchar", "narchar", "varchar2", "tinytext", "text",
+            "mediumtext", "longtext"};
+
+    /**
+     * 数据库时间类型
+     */
+    public static final String[] COLUMNTYPE_TIME_ALL = {"datetime", "time", "date", "timestamp"};
+
+    /**
+     * 数据库时间类型
+     */
+    public static final String[] COLUMNTYPE_DATETIME = {"datetime"};
+
+    /**
+     * 数据库时间类型
+     */
+    public static final String[] COLUMNTYPE_DATE = {"date"};
+
+    /**
+     * 数据库时间类型
+     */
+    public static final String[] COLUMNTYPE_TIME = {"time"};
+
+    /**
+     * 数据库数字类型
+     */
+    public static final String[] COLUMNTYPE_NUMBER = {"tinyint", "smallint", "mediumint", "int", "number", "integer",
+            "bigint", "float", "float", "double", "decimal"};
+
+    /**
+     * 页面不需要编辑字段
+     */
+    public static final String[] COLUMNNAME_NOT_EDIT = {"id", "create_by", "create_time", "del_flag"};
+
+    /**
+     * 页面不需要显示的列表字段
+     */
+    public static final String[] COLUMNNAME_NOT_LIST = {"id", "create_by", "create_time", "del_flag", "update_by",
+            "update_time"};
+
+    /**
+     * 页面不需要查询字段
+     */
+    public static final String[] COLUMNNAME_NOT_QUERY = {"id", "create_by", "create_time", "del_flag", "update_by",
+            "update_time", "remark"};
+
+    /**
+     * Entity基类字段
+     */
+    public static final String[] BASE_ENTITY = {"createBy", "createTime", "updateBy", "updateTime", "remark"};
+
+    /**
+     * Tree基类字段
+     */
+    public static final String[] TREE_ENTITY = {"parentName", "parentId", "orderNum", "ancestors", "children"};
+
+    /**
+     * 文本框
+     */
+    public static final String HTML_INPUT = "input";
+
+    /**
+     * 文本域
+     */
+    public static final String HTML_TEXTAREA = "textarea";
+
+    /**
+     * 下拉框
+     */
+    public static final String HTML_SELECT = "select";
+
+    /**
+     * 单选框
+     */
+    public static final String HTML_RADIO = "radio";
+
+    /**
+     * 复选框
+     */
+    public static final String HTML_CHECKBOX = "checkbox";
+
+    /**
+     * 日期控件
+     */
+    public static final String HTML_DATETIME = "datetime";
+
+    /**
+     * 字符串类型
+     */
+    public static final String TYPE_STRING = "String";
+
+    /**
+     * 整型
+     */
+    public static final String TYPE_INTEGER = "Integer";
+
+    /**
+     * 长整型
+     */
+    public static final String TYPE_LONG = "Long";
+
+    /**
+     * 浮点型
+     */
+    public static final String TYPE_DOUBLE = "Double";
+
+    /**
+     * 高精度计算类型
+     */
+    public static final String TYPE_BIGDECIMAL = "BigDecimal";
+
+    /**
+     * 时间类型
+     */
+    public static final String TYPE_DATE = "Date";
+
+    /**
+     * 时间类型
+     */
+    public static final String TYPE_LOCALDATE = "LocalDate";
+
+    /**
+     * 时间类型
+     */
+    public static final String TYPE_LOCALTIME = "LocalTime";
+
+    /**
+     * 时间类型
+     */
+    public static final String TYPE_LOCALDATETIME = "LocalDateTime";
+
+    /**
+     * 模糊查询
+     */
+    public static final String QUERY_LIKE = "LIKE";
+
+    /**
+     * 需要
+     */
+    public static final String REQUIRE = "1";
 }
