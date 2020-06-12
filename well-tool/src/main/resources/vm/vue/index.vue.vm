@@ -12,7 +12,6 @@
                         #set($comment=$column.columnComment)
                     #end
                     #if($column.htmlType == "input")
-                    <el-card class="mb10" shadow="never">
                         <el-form-item label="${comment}" prop="${column.javaField}">
                             <el-input
                                     v-model="queryParams.${column.javaField}"
@@ -56,9 +55,7 @@
                 <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
             </el-form-item>
         </el-form>
-        </el-card>
 
-        <el-card shadow="never">
             <el-row :gutter="10" class="mb8">
                 <el-col :span="1.5">
                     <el-button
@@ -151,7 +148,6 @@
                     :limit.sync="queryParams.pageSize"
                     @pagination="getPageList"
             />
-        </el-card>
         <!-- 添加或修改${functionName}对话框 -->
         <el-dialog :title="title" :visible.sync="open" width="500px">
             <el-form ref="form" :model="form" :rules="rules" label-width="80px">

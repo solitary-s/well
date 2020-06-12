@@ -9,8 +9,7 @@ import java.util.List;
  * @author ${author}
  * @date ${datetime}
  */
-public interface ${ClassName}Mapper
-{
+public interface ${ClassName}Mapper {
     /**
      * 查询${functionName}
      *
