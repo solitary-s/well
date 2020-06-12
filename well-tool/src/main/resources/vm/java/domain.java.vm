@@ -1,25 +1,19 @@
 package ${packageName}.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import cn.afterturn.easypoi.excel.annotation.Excel;
-import cn.elead.chaos.mybatils.web.domain.BaseEntity;
+import com.aloneness.well.mybatis.domain.BaseEntity;
+
 
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import cn.hutool.core.date.DatePattern;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
-    #foreach ($import in $importList)
-    import ${import};
-    #end
+#foreach ($import in $importList)
+import ${import};
+#end
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 
 /**
  * ${functionName}对象 ${tableName}
@@ -31,34 +25,13 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-@ApiModel(description = "${functionName}",value = "${ClassName}")
-public class ${ClassName} extends ${Entity}
-        {
-private static final long serialVersionUID = 1L;
+public class ${ClassName} extends ${Entity} {
+
+    private static final long serialVersionUID=1L;
 
 #foreach ($column in $columns)
     #if(!$table.isSuperColumn($column.javaField))
     /** $column.columnComment */
-        #if($column.list)
-            #set($parentheseIndex=$column.columnComment.indexOf("（"))
-            #if($parentheseIndex != -1)
-                #set($comment=$column.columnComment.substring(0, $parentheseIndex))
-            #else
-                #set($comment=$column.columnComment)
-            #end
-            #if($parentheseIndex != -1)
-            @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
-            #elseif($column.javaType == 'Date')
-            @Excel(name = "${comment}", width = 30, format = DatePattern.NORM_DATETIME_PATTERN)
-            #elseif($column.javaType == 'LocalDate')
-            @Excel(name = "${comment}", width = 30, format = DatePattern.NORM_DATE_PATTERN)
-            #elseif($column.javaType == 'LocalDateTime')
-            @Excel(name = "${comment}", width = 30, format = DatePattern.NORM_DATETIME_PATTERN)
-            #else
-            @Excel(name = "${comment}")
-            #end
-        #end
-    @ApiModelProperty(value = "$column.columnComment")
     private $column.javaType $column.javaField;
 
     #end
@@ -72,4 +45,5 @@ private static final long serialVersionUID = 1L;
         #end
     #end
 #end
+
 }
