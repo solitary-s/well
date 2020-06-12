@@ -1,31 +1,36 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes = [
+const routes = [
   {
-    path: '/home',
-    name: 'Home',
+    path: "/home",
+    name: "Home",
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue")
   },
   {
-    path: '/',
-    name: 'Tool',
-    component: () => import('../views/tool/index.vue')
+    path: "/",
+    name: "Tool",
+    component: () => import("../views/tool/index.vue")
+  },
+  {
+    path: "/gen/edit",
+    name: "editTable",
+    component: () => import("../views/tool/editTable.vue")
   }
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;
