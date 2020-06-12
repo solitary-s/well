@@ -37,7 +37,7 @@
       </el-form-item>
     </el-form>
 
-    <el-row :gutter="10" class="mb8">
+    <el-row :gutter="10" style="margin-bottom: 8px">
       <el-col :span="1.5">
         <el-button type="info" icon="el-icon-upload" size="mini" @click="openImportTable">导入</el-button>
       </el-col>
@@ -103,6 +103,7 @@
       :page.sync="queryParams.pageNum"
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
+      style="margin-top: 8px"
     />
     <!-- 预览界面 -->
     <el-dialog :title="preview.title" :visible.sync="preview.open" width="80%" top="5vh">
