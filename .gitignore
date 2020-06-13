@@ -60,3 +60,6 @@ hs_err_pid*
 *.zip
 *.tar.gz
 *.rar
+
+# rebel.xml
+rebel.xml
