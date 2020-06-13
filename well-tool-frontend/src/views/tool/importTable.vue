@@ -33,7 +33,8 @@
         <el-table-column prop="createTime" label="创建时间"></el-table-column>
         <el-table-column prop="updateTime" label="更新时间"></el-table-column>
       </el-table>
-      <pagination
+      <el-pagination
+        background
         v-show="total>0"
         :total="total"
         :page.sync="queryParams.pageNum"
@@ -102,7 +103,6 @@ export default {
     /** 导入按钮操作 */
     handleImportTable() {
       importTable({ tables: this.tables.join(",") }).then(res => {
-        this.msgSuccess(res.msg);
         if (res.data.code === 200) {
           this.visible = false;
           this.$emit("ok");

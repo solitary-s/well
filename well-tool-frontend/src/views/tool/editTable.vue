@@ -159,7 +159,6 @@ export default {
             treeParentCode: genTable.treeParentCode
           };
           updateGenTable(genTable).then(res => {
-            this.msgSuccess(res.msg);
             if (res.data.code === 200) {
               this.close();
             }
