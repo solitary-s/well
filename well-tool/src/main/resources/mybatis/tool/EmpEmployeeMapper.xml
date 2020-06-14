@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aloneness.well.tool.mapper.EmpEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.aloneness.well.tool.domain.EmpEmployee">
+    <!--@mbg.generated-->
+    <!--@Table e_emp_employee-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="WE_CHAT" jdbcType="VARCHAR" property="weChat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, EMP_NAME, PHONE, QQ, WE_CHAT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from e_emp_employee
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from e_emp_employee
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.aloneness.well.tool.domain.EmpEmployee" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into e_emp_employee (EMP_NAME, PHONE, QQ, 
+      WE_CHAT)
+    values (#{empName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{weChat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.aloneness.well.tool.domain.EmpEmployee" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into e_emp_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="weChat != null">
+        WE_CHAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weChat != null">
+        #{weChat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aloneness.well.tool.domain.EmpEmployee">
+    <!--@mbg.generated-->
+    update e_emp_employee
+    <set>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weChat != null">
+        WE_CHAT = #{weChat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aloneness.well.tool.domain.EmpEmployee">
+    <!--@mbg.generated-->
+    update e_emp_employee
+    set EMP_NAME = #{empName,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WE_CHAT = #{weChat,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
