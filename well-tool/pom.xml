@@ -6,13 +6,11 @@
         <groupId>com.aloneness</groupId>
         <artifactId>well-dependencies</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../well-dependencies/pom.xml</relativePath>
     </parent>
 
     <groupId>com.aloneness</groupId>
     <artifactId>well-tool</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <name>well-tool</name>
 
@@ -30,4 +28,31 @@
         </dependency>
 
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Repository</name>
+            <url>http://94.191.121.218:8081/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Nexus Plugin Repository</name>
+            <url>http://94.191.121.218:8081/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

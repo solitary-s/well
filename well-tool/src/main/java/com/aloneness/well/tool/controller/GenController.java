@@ -68,8 +68,8 @@ public class GenController extends BaseController {
     /**
      * 查询数据表字段列表
      */
-    @GetMapping(value = "/column/{talbleId}")
-    public PageInfo<GenTableColumn> columnList(Long tableId) {
+    @GetMapping(value = "/column/{tableId}")
+    public PageInfo<GenTableColumn> columnList(@PathVariable("tableId") Long tableId) {
         PageInfo<GenTableColumn> dataInfo = new PageInfo<GenTableColumn>();
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(tableId);
         dataInfo.setRows(list);
