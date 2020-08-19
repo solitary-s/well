@@ -1,0 +1,4 @@
+well:
+  image:
+    path: /usr/local/image/
+    url: http://localhost:8991/image/

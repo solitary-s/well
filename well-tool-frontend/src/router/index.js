@@ -21,6 +21,11 @@ const routes = [
     component: () => import("../views/tool/index.vue")
   },
   {
+    path: "/image",
+    name: "Image",
+    component: () => import("../views/image/index.vue")
+  },
+  {
     path: "/gen/edit",
     name: "editTable",
     component: () => import("../views/tool/editTable.vue")

@@ -11,6 +11,7 @@
     <groupId>com.aloneness</groupId>
     <artifactId>well-tool</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>well-tool</name>
 
@@ -55,4 +56,13 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
