@@ -42,7 +42,7 @@
 
         <persistence-api.version>1.0</persistence-api.version>
         <common-pool2.version>2.6.2</common-pool2.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <swagger2.version>2.8.0</swagger2.version>
         <!-- Spring Settings -->
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
