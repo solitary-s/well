@@ -27,7 +27,7 @@
         <mybatis.version>2.1.2</mybatis.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <pagehelper.version>1.2.10</pagehelper.version>
-        <mysql.version>5.1.47</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
 
         <!-- servlet Settings -->
         <servlet-api.version>4.0.1</servlet-api.version>
